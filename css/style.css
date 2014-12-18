@@ -1,0 +1,146 @@
+
+/* reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0px;padding:0px;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/*start*/
+/*登录注册*/
+
+.wrap{ 
+	width :300px;
+ 	margin :0 auto;
+ 	margin-top:150px;
+ 	padding-left:100px;
+ 	padding-top:15px;
+ }
+.wrap .text_input{ 
+	width:200px; 
+	height:30px; 
+}
+.wrap .check{
+	margin-bottom: 10px;
+}
+.wrap .radio_input{
+	margin-bottom: 10px;
+}
+.wrap .btn{ 
+	width:100px;
+	padding:5px; 
+}
+/*首页*/
+.topbar{
+	height: 47px;
+	background-color: #0767C8;
+	overflow:hidden;
+}
+.comwidth{	
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.logo{
+	float: left;
+	margin-top: -10px;
+}
+.user{
+	float: right;
+}
+.user a{
+	color: #FFF;
+    text-decoration: none;
+}
+
+
+.navbox li{
+	float: left;
+}
+
+.navbox a{
+    text-decoration: none;
+	padding: 0 35px;
+	color: #FFF;
+}
+
+#nav ul{
+display:none;
+position:absolute;
+padding:0;
+}
+
+#nav li:hover ul{
+display:block;
+}
+
+.toptenbox{
+	width: 600px;
+}
+
+.radio_input{
+	margin-top:10px;
+	float:right;
+}
+
+.questions{
+	clear: both;
+}
+#topquestions{
+	float: left;
+}
+/*search*/
+.search{
+	margin-top: 15px;
+}
+.search .text_input{
+	width:200px; 
+	height:30px; 
+	padding-top:5px;
+	margin-top: 10px;
+}
+
+.search .btn{ 
+	width:100px;
+}
+/*askquestions*/
+.askquestions{
+	width:600px;
+}
+.ask h5{
+	margin-bottom: -10px;
+}
+.askquestions .text_input{
+	width:600px; 
+	height:30px; 
+	padding-top:5px;	
+}
+.askquestions .insertimage{
+	float: right;
+	margin-bottom: 5px;
+}
+.textarea_input{
+	width: 600px;
+	height: 300px;
+}
+.send{
+	float: right;
+}
+/*question*/
+.question{
+	width: 600px;
+}
+.tag_a {
+
+    background: none repeat scroll 0 0 #eff6fa;
+    border-radius: 30px;
+    display: inline-block;
+    float: left;
+    margin: 10 5px 5px 10;
+    padding: 1px 10px 0;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.question{
+	clear: both;
+}

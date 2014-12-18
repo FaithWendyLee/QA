@@ -1,0 +1,83 @@
+<?php
+  session_start();
+?>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>personnalhome</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+<body>	
+	<div class="topbar">
+		<div class="comwidth">
+		    <div class="logo">
+		    	<img src="image/logo.png" alt="知乎">
+		    </div>
+		    <div class="user">
+		        <ul id="nav">
+		          <li>
+                  <a href="#">欢迎你，<?php echo $_SESSION["user"];?>!</a>     
+                     <ul>
+                       <li><a href="personalhome2.php">个人主页</a></li>
+                       <li><a href="login.html">退出</a></li>
+                     </ul>	
+                   </li>
+                </ul> 
+         </div>
+		    <div class="navbox">
+		    	<ul>
+			    	<li><a href="home2.php">主页</a></li>
+			    	<li><a href="search2.php">搜索</a></li>
+			    	<li><a href="askquestions2.php">提问</a></li>
+			    </ul>
+		    </div>
+	    </div>
+	</div>
+	<div class="personalhome">
+		<div class="comwidth">
+		    <p>用户：<?php echo $_SESSION["user"];?></p>
+			<p>积分：<?php echo $_SESSION["score"];?></p>     
+            <hr size=1 color=red width=600>
+			<h6>我的提问</h6>			
+			<?php
+
+                   include("php/conn.php");
+                   $userid=$_SESSION["uid"];
+                   $q="uid=$userid";
+                   $sql="select * from question where $q
+                   order by qid desc "; 
+                   $query=mysql_query($sql);
+                   while($rs=mysql_fetch_array($query)){
+                ?>
+                   question:<a href="question2.php?question=<?php  echo $rs['qid'] ?>"><?php echo $rs['title'] ?></a><br/>
+                   <hr size=1 color=red width=600>
+                <?php
+                }
+                ?>
+			<h6>我的回答</h6>		
+			<?php
+
+                   include("php/conn.php");
+                   $userid=$_SESSION["uid"];
+                   $a="uid=$userid";
+                   $sql="select * from answer where $a
+                   order by aid desc "; 
+                   $query=mysql_query($sql);
+                   while($rs=mysql_fetch_array($query)){
+                ?>
+                   question:<a href="question2.php?question=<?php  echo $rs['qid'] ?>"><?php 
+                   $questionid=$rs['qid'];
+                   $qsql="select * from question where qid=$questionid";
+                   $qquery=mysql_query($qsql);
+                   $qrs=mysql_fetch_array($qquery);
+                   echo $qrs['title'] 
+                   ?></a><br/><?php echo $rs['acontent'] ?><br/>
+                   <hr size=1 color=red width=600>
+                <?php
+                }
+                ?>
+		</div>
+	</div>
+</body>
+</html>

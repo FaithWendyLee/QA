@@ -1,0 +1,3 @@
+<?PHP
+  require"friendhome.html";
+?>

@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>register</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+<body>
+	<div class="wrap"  >
+	<form id="registerForm" onsubmit="return checkIfFormIsValid()" method="post" action="php/register.php">
+		<input type="text" class="text_input" id="name" name="name" placeholder="用户名" onblur="checkname(this.value)">
+		<input type="text" class="text_input" id="email" name="email" placeholder="注册邮箱" onblur="checkemail(this.value)">
+		<div style="display:none" id="erroremail">输入邮箱格式有误</div>
+		<input type="password" class="text_input" id="password" name="password" placeholder="创建密码" onblur="checkPwd(this.value)">
+        <div style="display:none" id="errorpwd"> 密码长度必须在6至16个字符之间</div>
+		<input type="password" class="text_input" id="pwconfirm" 
+		 placeholder="确认密码" onblur="checkpwconfirm(this.value)">
+        <div style="display:none" id="errorpwconfirm1">密码长度必须在6至16个字符之间</div>
+        <div style="display:none" id="errorpwconfirm2">两次输入密码不一致</div>
+		<input type="submit" class="btn" name="submit" value="注册">         
+
+	</form>
+</div>
+    <script src="js/register/register.js"></script> 
+</body>
+</html>

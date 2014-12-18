@@ -1,0 +1,104 @@
+<?php
+  session_start();
+?>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>search</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+<body>
+	<div class="topbar">
+		<div class="comwidth">
+		    <div class="logo">
+		    	<img src="image/logo.png" alt="知乎">
+		    </div>
+		    <div class="user">
+		        <ul id="nav">
+		          <li>
+                  <a href="#">欢迎你，<?php echo $_SESSION["user"];?>!</a>     
+                     <ul>
+                       <li><a href="personalhome2.php">个人主页</a></li>
+                       <li><a href="login.html">退出</a></li>
+                     </ul>	
+                   </li>
+                </ul> 
+         </div>
+		    <div class="navbox">
+		    	<ul>
+			    	<li><a href="home2.php">主页</a></li>
+			    	<li><a href="search2.php">搜索</a></li>
+			    	<li><a href="askquestions2.php">提问</a></li>
+			    </ul>
+		    </div>
+	    </div>
+	</div>
+	<div class="search">
+		<div class="comwidth">
+			<form method="get">
+			      <input class="text_input" type="text" name="searchquestions" placeholder="输入问题" maxlength="50">
+			      <input class="btn" type="submit" name=" subs" value="搜索问题">
+			      <input class="text_input" type="text" name="searchusers" placeholder="输入用户"  maxlength="50">
+		          <input class="btn" type="submit" value="搜索用户">
+            </form>
+                  
+
+				<?php
+
+                   include("php/conn.php");
+                    
+                   if(!empty($_GET['searchquestions'])){
+                   	$w=" title like '%".$_GET['searchquestions']."%'";
+                   }else{
+                   	$w=1;
+                   }
+                   $sql="select * from question where $w order by qid desc ";
+                   $query=mysql_query($sql);
+                   while($rs=mysql_fetch_array($query)){
+                ?>
+                   question:<a href="question2.php?question=<?php  echo $rs['qid'] ?>"><?php echo $rs['title'] ?></a><br/>
+                   <hr>
+                <?php
+                }
+                ?>
+
+
+
+
+                <?php             
+                   include("php/conn.php");
+                   if(!empty($_GET['searchusers'])){
+
+                   	$c=" name like '%".$_GET['searchusers']."%'";
+                   }else{
+                   	$c=1;
+                   }
+
+
+
+                   $usql="select * from user where $c order by uid desc ";
+                   $uquery=mysql_query($usql);
+
+
+
+                   while($urs=mysql_fetch_array($uquery)){
+
+                ?>
+                   user:<a href="user2.php?user=<?php  echo $urs['uid'] ?>"><?php echo $urs['name'] ?></a><br/>
+                   <hr>
+
+                <?php
+                }
+                ?>
+
+
+
+
+
+		    
+		</div>				
+	</div>
+	
+</body>
+</html>

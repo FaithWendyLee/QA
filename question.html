@@ -1,0 +1,107 @@
+<?php
+session_start();
+$id = $_GET['question'];
+?>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>question</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script type="text/javascript">
+    function ajax(){
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+        }else
+        {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+  
+        xmlhttp.onreadystatechange=function(){
+        if (xmlhttp.readyState==4 && xmlhttp.status==200){
+           document.getElementById("ajax").innerHTML=xmlhttp.responseText;
+           document.getElementById("ajax").disabled = true;
+        }
+        }
+        var id =" <?=$id?>";
+        xmlhttp.open("GET","php/ajax.php?id="+id,true);
+        xmlhttp.send();
+}
+
+
+</script>
+	
+</head>
+<body>
+	<div class="topbar">
+		<div class="comwidth">
+		    <div class="logo">
+		    	<img src="image/logo.png" alt="知乎">
+		    </div>
+		    <div class="user">
+		        <ul id="nav">
+		          <li>
+                  <a href="#">欢迎你，<?php echo $_SESSION["user"];?>!</a>     
+                     <ul>
+                       <li><a href="personalhome2.php">个人主页</a></li>
+                       <li><a href="login.html">退出</a></li>
+                     </ul>	
+                   </li>
+                </ul> 
+         </div>
+		    <div class="navbox">
+		    	<ul>
+			    	<li><a href="home2.php">主页</a></li>
+			    	<li><a href="search2.php">搜索</a></li>
+			    	<li><a href="askquestions2.php">提问</a></li>
+			    </ul>
+		    </div>
+	    </div>
+	</div>
+	<div class="questiondetail">
+		<div class="comwidth">	
+		        <a class="tag_a">html</a>	
+		        <a class="tag_a">java</a>
+				<div class="question">	
+				<?php
+                     include("php/conn.php");
+                     if(!empty($_GET['question'])){
+                    	 $_dd=$_GET['question'];
+                         $_SESSION["qid"]=$_dd;
+                     }
+                     $qresult = mysql_query("SELECT * FROM question WHERE qid= '$_dd'");
+                     $qrs=mysql_fetch_array($qresult);
+                ?>		
+				<h5 ><?php echo $qrs['title'] ?></h5>
+				<p><?php echo $qrs['content'] ?></p>
+
+				<p><button class="like"type="button" id="ajax" onclick="ajax()">点赞<?php echo $qrs['praisecount']?></button></p>
+				<p>回复：</p>
+				<hr size=1 color=red width=600>
+              
+                <?php
+                     $aquery=mysql_query("SELECT * FROM answer WHERE qid= '$_dd'");
+                     while($ars=mysql_fetch_array($aquery)){
+                     	$userid=$ars['uid'];
+                     	$uquery=mysql_query("SELECT * FROM user WHERE uid= '$userid'");
+                     	$urs=mysql_fetch_array($uquery);
+                ?>                
+				<p><a><?php echo $urs['name'] ?></a>:<?php echo $ars['acontent'] ?></p>
+				<hr size=1 color=red width=600>
+                <?php
+                }
+                ?>
+    			
+				
+                <form onsubmit="return checkanswerform()" method="post" action="php/question.php">
+			    <textarea class="textarea_input" name="answercontent" palceholder="回复..."></textarea><br/>
+			    <button class="insertimage" type="button">插入图片</button><br/>
+			    <input class="send" type="submit" value="评论">
+			    </form>			
+				<div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

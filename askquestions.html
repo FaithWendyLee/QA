@@ -1,0 +1,54 @@
+<?php
+  session_start();
+?>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>askquestions</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+<body>
+	<div class="topbar">
+		<div class="comwidth">
+		    <div class="logo">
+		    	<img src="image/logo.png" alt="知乎">
+		    </div>
+		    <div class="user">
+		        <ul id="nav">
+		          <li>
+                  <a href="#">欢迎你，<?php echo $_SESSION["user"];?>!</a>     
+                     <ul>
+                       <li><a href="personalhome2.php">个人主页</a></li>
+                       <li><a href="login.html">退出</a></li>
+                     </ul>	
+                   </li>
+                </ul> 
+         </div>
+		    <div class="navbox">
+		    	<ul>
+			    	<li><a href="home2.php">主页</a></li>
+			    	<li><a href="search2.php">搜索</a></li>
+			    	<li><a href="askquestions2.php">提问</a></li>
+			    </ul>
+		    </div>
+	    </div>
+	</div>
+	<div class="ask">
+		<div class="comwidth">
+			<h5 >提问</h5>			
+			<div class="askquestions">		
+			<hr size=1 color=red width=600>
+			<form id="askForm" onsubmit="return checkForm()" method="post" action="php/askquestions.php">
+			<input class="text_input" type="text" name="questiontitle" placeholder="输入标题..." maxlength="100"><br/>
+			<button class="insertimage" type="button">插入图片</button><br/>
+			<textarea class="textarea_input" name="questioncont"  placeholder="详细内容..."></textarea><br/>
+			<p class="tagradio">tag:<input type="radio" name="sort" value="java">java<input type="radio" name="sort" value="c">c<input type="radio" name="sort" value="html">html</p>
+			<input class="send" type="submit" value="发布">
+			</form>
+			</div>
+		</div>
+	</div>
+    <script src="js/askquestions/askquestions.js"></script> 
+</body>
+</html>
